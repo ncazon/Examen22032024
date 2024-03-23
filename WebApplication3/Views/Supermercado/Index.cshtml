@@ -14,7 +14,8 @@
         <tr>
             <td>@producto.Id</td>
             <td>@producto.Nombre</td>
-            <td><img src="@producto.Imagen" alt="Imagen de @producto.Nombre" /></td>
+            <!-- <td><img src="@producto.Imagen" alt="Imagen de @producto.Nombre" /></td> -->
+            <td><img src="~/images/@producto.Imagen" alt="Imagen de @producto.Nombre" /></td>
             <td>@producto.Precio</td>
             <td><a href="@Url.Action("AgregarAlCarrito", "Supermercado", new { id = producto.Id })">Comprar ahora</a></td>
         </tr>

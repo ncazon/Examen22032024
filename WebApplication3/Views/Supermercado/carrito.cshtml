@@ -12,9 +12,12 @@
     </tr>
     @foreach (var elemento in Model)
     {
+        var rutaImagen = Url.Content("~/images/" + elemento.Producto.Imagen);
         <tr>
             <td>@elemento.Producto.Nombre</td>
-            <td><img src="@elemento.Producto.Imagen" alt="Imagen de @elemento.Producto.Nombre" /></td>
+            <!--<td><img src="@elemento.Producto.Imagen" alt="Imagen de @elemento.Producto.Nombre" /></td>-->
+         <td><img src="@rutaImagen" /></td>
+
             <td>@elemento.Producto.Precio</td>
             <td>@elemento.Cantidad</td>
             <td><a href="@Url.Action("EliminarDelCarrito", "Supermercado", new { id = elemento.Producto.Id })">Eliminar uno</a></td>
@@ -24,4 +27,5 @@
 </table>
 Total: @Model.Sum(e => e.Producto.Precio * e.Cantidad)
 <br />
+<a href="@Url.Action("Index", "Supermercado")">Volver atrás</a> <!-- Agregado botón "Volver atrás" -->
 <a href="@Url.Action("FinalizarCompra", "Supermercado")">Finalizar compra</a>
