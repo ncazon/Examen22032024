@@ -1,0 +1,27 @@
+﻿@model List<Elemento>
+
+<h2>Carrito de Compras</h2>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Acción</th>
+        <th>Subtotal</th>
+    </tr>
+    @foreach (var elemento in Model)
+    {
+        <tr>
+            <td>@elemento.Producto.Nombre</td>
+            <td><img src="@elemento.Producto.Imagen" alt="Imagen de @elemento.Producto.Nombre" /></td>
+            <td>@elemento.Producto.Precio</td>
+            <td>@elemento.Cantidad</td>
+            <td><a href="@Url.Action("EliminarDelCarrito", "Supermercado", new { id = elemento.Producto.Id })">Eliminar uno</a></td>
+            <td>@(elemento.Producto.Precio * elemento.Cantidad)</td>
+        </tr>
+    }
+</table>
+Total: @Model.Sum(e => e.Producto.Precio * e.Cantidad)
+<br />
+<a href="@Url.Action("FinalizarCompra", "Supermercado")">Finalizar compra</a>
